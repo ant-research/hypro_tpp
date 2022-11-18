@@ -28,7 +28,7 @@ mkdir -p data/{data_name}
 **Please unzipped the files and put them in the `./data/{data_name}` directory**
 
 
-### Training Example
+### Training and Eval Example
 
 Assume we are running over the Taxi data and setup the config files.
 
