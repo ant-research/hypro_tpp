@@ -1,0 +1,53 @@
+base_dir: logs
+skip_load_model_in_base_runner: True
+
+
+gen_sample_file_format: hypro_gen_samples_bak/gen_samples_{0}_{1}.pickle
+time_range: 1.5
+
+data:
+  batch_size: 1
+  data_name: taobao
+  data_dir: data/taobao/{}.pkl
+
+
+model:
+  name: XFMRNHPFastGenerator_XFMRNHPFastDiscriminator
+  sample_len: 20
+  generator:
+    name: XFMRNHPFast
+    hidden_dim: 32
+    time_emb_dim: 64
+    num_heads: 1
+    num_layers: 2
+    dropout: 0.1
+    sharing_param_layer: False
+    use_ln: False
+    mc_num_sample_per_step: 200
+    pretrained_model_dir: logs_taobao/XFMRNHPFast_20221002-21:18:18/models/saved_model
+    thinning_params:
+      num_seqs: 100
+      num_samples: 1
+      num_exp: 500 # number of i.i.d. Exp(intensity_bound) draws at one time in thinning algorithm
+      look_ahead_time: 10
+      patience: 5 # the maximum iteration used in adaptive thinning
+  discriminator:
+    name: XFMRNHPFastDisc
+    hidden_dim: 32
+    time_emb_dim: 64
+    num_heads: 1
+    num_layers: 2
+    dropout: 0.1
+    sharing_param_layer: False
+    use_ln: False
+    mc_num_sample_per_step: 5
+    pretrained_model_dir: logs_taobao_disc/XFMRNHPFastDisc_20221003-16:18:07/models/saved_model # bce
+#    pretrained_model_dir: logs_taobao_disc/XFMRNHPFastDisc_20221003-20:36:50/models/saved_model # bce_hinge
+#    pretrained_model_dir: logs_taobao_disc/XFMRNHPFastDisc_20221003-23:38:54/models/saved_model # mnce
+#    pretrained_model_dir: logs_taobao_disc/XFMRNHPFastDisc_20221004-00:14:44/models/saved_model # mnce_hinge
+
+
+eval:
+  num_samples_per_iteration: [20]
+  target_set: test
+  del_cost: [0.05, 0.5, 1.0, 1.5, 2.0, 3.0,4.0]

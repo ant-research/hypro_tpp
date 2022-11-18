@@ -1,0 +1,30 @@
+base_dir: logs_taxi_disc
+
+data:
+  batch_size: 32
+  data_name: taxi
+  data_dir:  data/noise_taxi/{}.pkl
+  num_samples_per_seq: 5
+
+model:
+  name: XFMRNHPFastDisc
+  hidden_dim: 32
+  time_emb_dim: 64
+  num_heads: 1
+  num_layers: 2
+  dropout: 0.1
+  sharing_param_layer: False
+  use_ln: False
+  mc_num_sample_per_step: 20
+  sample_len: 20
+  loss: bce_hinge
+#  loss: mnce
+#  loss: bce_hinge
+#  loss: mnce_hinge
+
+
+train:
+  dropout_rate: 0.2
+  lr: 0.001
+  epoch: 0
+  max_epoch: 100

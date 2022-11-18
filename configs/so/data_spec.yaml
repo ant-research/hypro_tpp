@@ -1,0 +1,5 @@
+stackoverflow:
+  add_bos: false
+  num_event_types_pad: 23
+  num_event_types_no_pad: 22
+  event_pad_index: 22

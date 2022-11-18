@@ -1,0 +1,5 @@
+taobao:
+  add_bos: false
+  num_event_types_pad: 18
+  num_event_types_no_pad: 17
+  event_pad_index: 17

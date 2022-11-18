@@ -1,0 +1,22 @@
+base_dir: logs_stackoverflow
+
+data:
+  batch_size: 32
+  data_name: stackoverflow
+  data_dir: data/so/{}.pkl
+
+model:
+  name: XFMRNHPFast
+  hidden_dim: 32
+  time_emb_dim: 64
+  num_heads: 1
+  num_layers: 2
+  dropout: 0.1
+  sharing_param_layer: False
+  use_ln: False
+  mc_num_sample_per_step: 20
+
+train:
+  dropout_rate: 0.1
+  lr: 0.001
+  max_epoch: 100

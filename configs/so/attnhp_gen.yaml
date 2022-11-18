@@ -1,0 +1,36 @@
+base_dir: logs_stackoverflow
+
+sample_generation:
+  gen_noise_sample: true
+  start_pos: 0.5  # <1 is used as proportional ratio; >= 1 used as positional index
+  gen_noise_sample_len: 20  # 0 unused
+  num_samples_per_seq: 10
+  gen_noise_max_distance: 0 # 0 unused
+  gen_max_len: 400
+  distance_del_cost: [0.5, 1.0, 1.5]
+  std_method: std
+  thinning_params:
+    num_seqs: 100
+    num_samples: 1
+    num_exp: 500 # number of i.i.d. Exp(intensity_bound) draws at one time in thinning algorithm
+    look_ahead_time: 10
+    patience: 5 # the maximum iteration used in adaptive thinning
+
+data:
+  data_name: so
+  data_dir: data/so/{}.pkl
+  batch_size: 128
+  saved_dir: data/noise_so
+
+model:
+  name: XFMRNHPFast
+  hidden_dim: 32
+  time_emb_dim: 64
+  num_heads: 1
+  num_layers: 2
+  dropout: 0.1
+  sharing_param_layer: False
+  use_ln: False
+  mc_num_sample_per_step: 200
+  # trained generator model
+#  pretrained_model_dir: logs_taobao/XFMRNHPFast_20220412-21:26:36/models/saved_model
