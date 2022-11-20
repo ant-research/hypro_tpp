@@ -72,10 +72,10 @@ NOTE: in `configs/taxi/joint_eval.yaml`, one needs to update the dir of the gene
 If you find this repository useful for your work, please consider citing it as follows:
 
 ```bibtex
-@article{xue2022hypro,
+@inproceedings{xue2022hypro,
   title={HYPRO: A Hybridly Normalized Probabilistic Model for Long-Horizon Prediction of Event Sequences},
   author={Xue, Siqiao and Shi, Xiaoming and Zhang, Y James and Mei, Hongyuan},
-  booktitle = neurips,
+  booktitle =   {Advances in Neural Information Processing Systems},
   year={2022},
   url={https://arxiv.org/abs/2210.01753}
 }
